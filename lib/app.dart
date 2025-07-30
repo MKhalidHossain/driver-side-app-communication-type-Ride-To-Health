@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:ridetohealthdriver/feature/earning/presentation/screen/earning_screen.dart';
+import 'feature/earning/presentation/screen/ride_history_screen.dart';
 import 'feature/historyAndProfile/presentation/screens/history_screen.dart';
 import 'feature/historyAndProfile/presentation/screens/profile_screen.dart';
 import 'feature/map/presentation/screens/work/home_screen_driver.dart';
@@ -17,8 +19,8 @@ class _AppMainState extends State<AppMain> {
   final List<Widget> _pages = [
     HomeScreenDriver(),
     //HomeScreen(),
-    SizedBox(),
-    HistoryScreen(),
+    EarningsScreen(),
+    RideHistoryPage(),
     ProfileScreen(),
   ];
 

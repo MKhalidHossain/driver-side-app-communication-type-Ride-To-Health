@@ -2,6 +2,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:ridetohealthdriver/core/extensions/text_extensions.dart';
+import 'package:ridetohealthdriver/feature/earning/presentation/screen/ride_history_screen.dart';
 import '../../../../core/constants/app_colors.dart';
 import '../../../../core/widgets/promo_banner_widget.dart';
 import '../../../historyAndProfile/presentation/screens/history_screen.dart';
@@ -163,7 +164,7 @@ class _HomeScreenState extends State<HomeScreen> {
               const SizedBox(height: 16),
               GestureDetector(
                 onTap: () {
-                  Get.to(HistoryScreen());
+                  Get.to(RideHistoryPage());
                 },
                 child: SingleActivityContainer(
                   title: 'New York City',
@@ -174,7 +175,7 @@ class _HomeScreenState extends State<HomeScreen> {
               const SizedBox(height: 16),
               GestureDetector(
                 onTap: () {
-                  Get.to(HistoryScreen());
+                  Get.to(RideHistoryPage());
                 },
                 child: SingleActivityContainer(
                   title: 'Los Anageles',
