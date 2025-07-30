@@ -85,6 +85,7 @@ flutter_launcher_icons:
   image_path: "assets/images/logo.png"
   adaptive_icon_background: "#FFFFFF"     # OR a path to background image
   adaptive_icon_foreground: "assets/images/logo.png"
+  remove_alpha_ios: true
   flutter_lints: ^5.0.0
 
 # For information on the generic Dart part of this file, see the
