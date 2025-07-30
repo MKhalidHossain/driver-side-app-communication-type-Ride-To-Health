@@ -5,6 +5,8 @@ import 'package:get/get.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:ridetohealthdriver/core/extensions/text_extensions.dart';
 import 'package:ridetohealthdriver/core/widgets/normal_custom_button.dart';
+import 'package:ridetohealthdriver/feature/map/presentation/screens/work/home_screen_driver.dart';
+import '../../../../../core/widgets/normal_custom_icon_button.dart';
 import '../../../controllers/app_controller.dart';
 import '../../../controllers/booking_controller.dart';
 import '../../../controllers/locaion_controller.dart';
@@ -14,9 +16,9 @@ import '../chat_screen.dart';
 import '../call_screen.dart';
 import '../payment_screen.dart';
 import 'finding_your_driver_screen.dart';
-import 'pickup_offer_driver_screen.dart';
 
-class HomeScreenDriver extends StatefulWidget {
+class PickUpOfferDriverScreen extends StatefulWidget {
+  const PickUpOfferDriverScreen({super.key});
   static const CameraPosition _initialPosition = CameraPosition(
     target: LatLng(
       23.707306,
@@ -26,10 +28,11 @@ class HomeScreenDriver extends StatefulWidget {
   );
 
   @override
-  State<HomeScreenDriver> createState() => _HomeScreenDriverState();
+  State<PickUpOfferDriverScreen> createState() =>
+      _PickUpOfferDriverScreenState();
 }
 
-class _HomeScreenDriverState extends State<HomeScreenDriver> {
+class _PickUpOfferDriverScreenState extends State<PickUpOfferDriverScreen> {
   bool _showFirstWidget = true;
 
   //
@@ -102,7 +105,7 @@ class _HomeScreenDriverState extends State<HomeScreenDriver> {
                   );
                 }
               },
-              initialCameraPosition: HomeScreenDriver._initialPosition,
+              initialCameraPosition: PickUpOfferDriverScreen._initialPosition,
               markers: locationController.markers,
               polylines: locationController.polylines, // Display polyline
               myLocationEnabled: true,
@@ -122,13 +125,13 @@ class _HomeScreenDriverState extends State<HomeScreenDriver> {
               child: Container(
                 width: size.width * 0.90,
                 margin: const EdgeInsets.all(24),
-                padding: EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+                padding: EdgeInsets.all(20),
                 decoration: BoxDecoration(
                   color: const Color(0xFF2E2E38), // Dark grey from the image
                   borderRadius: BorderRadius.all(Radius.circular(8)),
-                  // border: Border(
-                  //   left: BorderSide(color: Color(0xff7B0100), width: 5),
-                  // ),
+                  border: Border(
+                    left: BorderSide(color: Color(0xff7B0100), width: 5),
+                  ),
                 ),
                 child: Column(
                   mainAxisSize: MainAxisSize.min,
@@ -147,7 +150,7 @@ class _HomeScreenDriverState extends State<HomeScreenDriver> {
                         ),
                         Switch(
                           activeColor: Color(0xff7B0100).withOpacity(0.08),
-                          value: true,
+                          value: false,
                           onChanged: (value) {},
                         ),
                       ],
@@ -228,7 +231,7 @@ class _HomeScreenDriverState extends State<HomeScreenDriver> {
                         children: [
                           // SizedBox(height: 20),
                           Text(
-                            'No ride requests at the moment',
+                            "You're currently offline",
                             style: TextStyle(
                               color: Colors.white,
                               fontSize: 16,
@@ -237,7 +240,7 @@ class _HomeScreenDriverState extends State<HomeScreenDriver> {
                           ),
                           SizedBox(height: 10),
                           Text(
-                            'New requests will appear here',
+                            'Go online to receive ride requests',
                             style: TextStyle(color: Colors.grey, fontSize: 13),
                           ),
                           // Row(
@@ -257,20 +260,20 @@ class _HomeScreenDriverState extends State<HomeScreenDriver> {
                     )
                   : Container(
                       width: size.width * 0.90,
-                      margin: const EdgeInsets.only(
-                        left: 24,
-                        right: 24,
-                        bottom: 36,
-                      ),
+                      // margin: const EdgeInsets.only(
+                      //   left: 24,
+                      //   right: 24,
+                      //   bottom: 36,
+                      // ),
                       padding: EdgeInsets.all(25),
                       decoration: BoxDecoration(
                         color: const Color(
                           0xFF2E2E38,
                         ), // Dark grey from the image
                         borderRadius: BorderRadius.all(Radius.circular(8)),
-                        border: Border(
-                          left: BorderSide(color: Color(0xff7B0100), width: 5),
-                        ),
+                        // border: Border(
+                        //   left: BorderSide(color: Color(0xff7B0100), width: 5),
+                        // ),
                       ),
                       child: Column(
                         mainAxisSize: MainAxisSize.min,
@@ -473,99 +476,84 @@ class _HomeScreenDriverState extends State<HomeScreenDriver> {
                           ),
 
                           SizedBox(height: 20),
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                              Row(
-                                children: [
-                                  Icon(
-                                    Icons.access_time,
-                                    color: Colors.white,
-                                    size: 16,
-                                  ),
-                                  Text(
-                                    'Now',
-                                    style: TextStyle(
-                                      color: Colors.white,
-                                      fontSize: 14,
-                                      fontWeight: FontWeight.bold,
-                                    ),
-                                  ),
-                                ],
-                              ),
-                              Text(
-                                '\$18.50',
-                                style: TextStyle(
-                                  color: Colors.white,
-                                  fontSize: 16,
-                                  fontWeight: FontWeight.bold,
-                                ),
-                              ),
-                              Text(
-                                '3.2 miles',
-                                style: TextStyle(
-                                  color: Colors.white,
-                                  fontSize: 16,
-                                  fontWeight: FontWeight.bold,
-                                ),
-                              ),
-                            ],
+                          Container(
+                            padding: EdgeInsets.all(15),
+                            decoration: BoxDecoration(
+                              //color: const Color(0xFF3B3B42),
+                              borderRadius: BorderRadius.circular(12),
+                            ),
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                "Total".text16White500(),
+                                // Text(
+                                //   'Total',
+                                //   style: TextStyle(
+                                //     color: AppColors.context(context).textColor,
+                                //     fontSize: 16,
+                                //     fontWeight: FontWeight.bold,
+                                //   ),
+                                // ),
+                                "\$32.50".text16White500(),
+                                // Text(
+                                //   '\$32.50',
+                                //   style: TextStyle(
+                                //     color: Colors.white,
+                                //     fontSize: 16,
+                                //     fontWeight: FontWeight.bold,
+                                //   ),
+                                // ),
+                              ],
+                            ),
                           ),
-                          SizedBox(height: 20),
-                          // Confirm Location Button
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                              SmallSemiTranparentButton(
-                                height: 41,
-                                weight: size.width * 0.35,
-                                fillColor: Colors.white,
-                                textColor: Colors.black,
 
-                                text: "Decline",
-                                onPressed: () {},
+                          // NormalCustomIconButton(
+                          //   icon: Icons.call_outlined,
+                          //   iconSize: 30,
+                          //   onPressed: () {
+                          //     Get.to(CallScreen());
+                          //   },
+                          // ),
+
+                          // Bottom Action Buttons
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceAround,
+                            children: [
+                              Expanded(
+                                flex: 1,
+                                child: NormalCustomIconButton(
+                                  icon: Icons.call_outlined,
+                                  iconSize: 28,
+                                  onPressed: () {
+                                    Get.to(CallScreen());
+                                  },
+                                ),
                               ),
-                              NormalCustomButton(
-                                weight: size.width * 0.35,
-                                fillColor: Colors.green,
-                                text: "Accept",
-                                onPressed: () {
-                                  Get.to(() => PickUpOfferDriverScreen());
-                                },
+                              Expanded(
+                                flex: 1,
+                                child: NormalCustomIconButton(
+                                  icon: Icons.messenger_outline,
+                                  iconSize: 28,
+                                  onPressed: () {
+                                    Get.to(ChatScreen());
+                                  },
+                                ),
+                              ),
+                              Expanded(
+                                flex: 3,
+                                child: NormalCustomButton(
+                                  height: 51,
+                                  fontSize: 18,
+                                  circularRadious: 30,
+                                  text: "Cencel Ride",
+                                  onPressed: () {
+                                    // Get.to();
+                                  },
+                                ),
                               ),
                             ],
                           ),
-                          // Container(
-                          //   width: double.infinity,
-                          //   child: ElevatedButton(
-                          //     onPressed: () {
-                          //       // Action for "Confirm Location"
-                          //       // For example, navigate to the next screen or trigger booking process
-                          //       appController.setCurrentScreen(
-                          //         'confirm',
-                          //       ); // Your existing logic
-                          //       // Get.to(() => LocationConfirmationScreen());
-                          //       Get.to(() => FindingYourDriverScreen());
-                          //     },
-                          //     style: ElevatedButton.styleFrom(
-                          //       backgroundColor: const Color(
-                          //         0xFFC0392B,
-                          //       ), // Red color
-                          //       padding: EdgeInsets.symmetric(vertical: 15),
-                          //       shape: RoundedRectangleBorder(
-                          //         borderRadius: BorderRadius.circular(10),
-                          //       ),
-                          //     ),
-                          //     child: Text(
-                          //       'Confirm Location',
-                          //       style: TextStyle(
-                          //         color: Colors.white,
-                          //         fontSize: 16,
-                          //         fontWeight: FontWeight.bold,
-                          //       ),
-                          //     ),
-                          //   ),
-                          // ),
+                          const SizedBox(height: 20),
                         ],
                       ),
                     ),
