@@ -22,10 +22,10 @@ class MyApp extends StatelessWidget {
       ),
       debugShowCheckedModeBanner: false,
       home:
-      VerifyIdentityScreen(),
+          //VerifyIdentityScreen(),
           //MapScreenTest(),
           // SearchDestinationScreen(),
-         //08i AppMain(),
+          AppMain(),
       // SplashScreen(nextScreen: Onboarding1()),
     );
   }
