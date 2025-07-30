@@ -3,6 +3,7 @@ import 'package:get/get.dart';
 import 'package:ridetohealthdriver/app.dart';
 
 import 'core/onboarding/presentation/screens/onboarding1.dart';
+import 'feature/earning/presentation/screen/earning_screen.dart';
 import 'feature/map/bindings/initial_binding.dart';
 import 'core/onboarding/presentation/screens/spashScreen.dart';
 // import 'package:ridetohealthdriver/feature/earning/presentation/screen/ride_history_screen.dart';
@@ -30,12 +31,12 @@ class MyApp extends StatelessWidget {
       initialBinding: InitialBinding(),
       debugShowCheckedModeBanner: false,
       home:
-     // VerifyIdentityScreen(),
+          // VerifyIdentityScreen(),
           //MapScreenTest(),
           // SearchDestinationScreen(),
-         //08i AppMain(),
-      // SplashScreen(nextScreen: Onboarding1()),
-
+          //08i AppMain(),
+          // SplashScreen(nextScreen: Onboarding1()),
+          EarningsScreen(),
     );
   }
 }
