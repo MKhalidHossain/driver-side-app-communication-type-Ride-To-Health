@@ -55,6 +55,7 @@ class EarningsScreen extends StatelessWidget {
                         )
                         .toList(),
                     onChanged: (value) {
+                      print("value $value");
                       if (value != null) {
                         controller.switchPaymentMethod(value);
                       }

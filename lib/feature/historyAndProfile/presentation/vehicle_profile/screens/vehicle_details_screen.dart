@@ -15,6 +15,7 @@ class VehicleDetailsScreen extends StatelessWidget {
       appBar: AppBar(
         backgroundColor: Colors.transparent,
         elevation: 0,
+        leading: BackButton(color: Colors.white),
         title: const Text(
           'Vehicle Details',
           style: TextStyle(

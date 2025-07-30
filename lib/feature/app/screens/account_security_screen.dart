@@ -54,7 +54,7 @@ class _AccountSecurityScreenState extends State<AccountSecurityScreen> {
       appBar: AppBar(
         backgroundColor: Colors.transparent,
         elevation: 0,
-
+        leading: BackButton(color: Colors.white),
         title: const Text(
           'Account Security',
           style: TextStyle(
