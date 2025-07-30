@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:ridetohealthdriver/core/extensions/text_extensions.dart';
 
-import '../../../home/presentation/widgets/saved_pleaces_single_container.dart';
+import '../../../homeAndMap/presentation/widgets/saved_pleaces_single_container.dart';
 
 class SavedPlaceScreen extends StatefulWidget {
   const SavedPlaceScreen({super.key});

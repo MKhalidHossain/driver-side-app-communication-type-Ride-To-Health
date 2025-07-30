@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:ridetohealthdriver/core/extensions/text_extensions.dart';
 import 'package:ridetohealthdriver/feature/auth/presentation/screens/personal_informetion_screen.dart';
+import 'package:ridetohealthdriver/feature/auth/presentation/screens/user_login_screen.dart';
 
 import '../../../../core/constants/app_colors.dart';
 import '../../../app/screens/account_security_screen.dart';
@@ -267,7 +268,9 @@ class _ProfileScreenState extends State<ProfileScreen> {
                         border: Border.all(color: Color(0xFFEA0001), width: 2),
                       ),
                       child: TextButton(
-                        onPressed: () {},
+                        onPressed: () {
+                          Get.offAll(() => UserLoginScreen());
+                        },
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
