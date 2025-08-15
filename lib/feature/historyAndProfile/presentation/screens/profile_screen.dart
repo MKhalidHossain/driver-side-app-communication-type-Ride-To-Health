@@ -175,16 +175,16 @@ class _ProfileScreenState extends State<ProfileScreen> {
                               Column(
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
-                                  "Honda Civic".text14White(),
-                                  "Model".text12White(),
+                                  "Honda Civic".text16White500(),
+                                  "Model".text12Grey(),
                                 ],
                               ),
                               const SizedBox(height: 12),
                               Column(
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
-                                  "Honda Civic".text14White(),
-                                  "Model".text12White(),
+                                  "2019 Toyota Camry".text16White500(),
+                                  "ABC1234".text12Grey(),
                                 ],
                               ),
                             ],

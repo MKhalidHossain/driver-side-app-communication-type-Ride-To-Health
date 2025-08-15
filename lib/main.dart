@@ -3,6 +3,7 @@ import 'package:get/get.dart';
 import 'package:ridetohealthdriver/app.dart';
 
 import 'core/onboarding/presentation/screens/onboarding1.dart';
+import 'feature/auth/presentation/screens/user_login_screen.dart';
 import 'feature/earning/presentation/screen/earning_screen.dart';
 import 'feature/map/bindings/initial_binding.dart';
 import 'core/onboarding/presentation/screens/spashScreen.dart';
@@ -34,9 +35,11 @@ class MyApp extends StatelessWidget {
           // VerifyIdentityScreen(),
           //MapScreenTest(),
           // SearchDestinationScreen(),
-          AppMain(),
-      // SplashScreen(nextScreen: Onboarding1()),
+         // AppMain(),
+       SplashScreen(nextScreen: UserLoginScreen()),
       //EarningsScreen(),
     );
   }
 }
+
+// onbording hobe na driver app a

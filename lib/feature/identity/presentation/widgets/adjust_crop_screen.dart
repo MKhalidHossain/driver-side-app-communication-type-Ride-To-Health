@@ -249,3 +249,105 @@ class _BlurOutsideCropPainter extends CustomPainter {
 //     );
 //   }
 // }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// import 'dart:io';
+// import 'dart:typed_data';
+// import 'dart:ui' as ui;
+
+// import 'package:flutter/material.dart';
+// import 'package:get/get.dart';
+// import 'package:crop_image/crop_image.dart';
+
+// import '../screens/card_preview_screen.dart';
+
+// class AdjustCropScreen extends StatefulWidget {
+//   final String imagePath;
+//   const AdjustCropScreen({super.key, required this.imagePath});
+
+//   @override
+//   State<AdjustCropScreen> createState() => _AdjustCropScreenState();
+// }
+
+// class _AdjustCropScreenState extends State<AdjustCropScreen> {
+//   late final CropController _controller;
+
+//   @override
+//   void initState() {
+//     super.initState();
+//     _controller = CropController(
+//       aspectRatio: 345 / 230, // width / height ratio
+//       defaultCrop: const Rect.fromLTRB(0.25, 0.25, 0.75, 0.75),
+//       minimumImageSize: 300,  // Fixed width in pixels
+//     );
+//   }
+
+//   Future<Uint8List> _uiImageToBytes(ui.Image image) async {
+//     final byteData = await image.toByteData(format: ui.ImageByteFormat.png);
+//     return byteData!.buffer.asUint8List();
+//   }
+
+//   Future<void> _cropAndSave() async {
+//     // Crop returns a ui.Image
+//     final ui.Image croppedUiImage = await _controller.croppedBitmap();
+//     final bytes = await _uiImageToBytes(croppedUiImage);
+
+//     final croppedFile = await File('${widget.imagePath}_cropped.png')
+//         .writeAsBytes(bytes, flush: true);
+
+//     if (!mounted) return;
+//     Get.to(() => CardPreviewScreen(imagePath: croppedFile.path));
+//   }
+
+//   @override
+//   Widget build(BuildContext context) {
+//     return Scaffold(
+//       backgroundColor: Colors.black,
+//       appBar: AppBar(
+//         title: const Text('Adjust Crop'),
+//         backgroundColor: Colors.black,
+//       ),
+//       body: Column(
+//         children: [
+//           Expanded(
+//             child: CropImage(
+//               controller: _controller,
+//               image: Image.file(File(widget.imagePath)),
+//               alwaysMove: true,
+//               paddingSize: 0,
+//               maximumImageSize: 300,      // Same as minimum → fixed size
+//               scrimColor: Colors.black.withOpacity(0.6),
+//               gridColor: Colors.green,
+//               gridThinWidth: 3,
+//               showCorners: false,
+//             ),
+//           ),
+//           Padding(
+//             padding: const EdgeInsets.all(20),
+//             child: ElevatedButton(
+//               style: ElevatedButton.styleFrom(
+//                 backgroundColor: Colors.green,
+//                 padding: const EdgeInsets.symmetric(vertical: 14),
+//               ),
+//               onPressed: _cropAndSave,
+//               child: const Text('Crop Card', style: TextStyle(fontSize: 18)),
+//             ),
+//           ),
+//         ],
+//       ),
+//     );
+//   }
+// }
+

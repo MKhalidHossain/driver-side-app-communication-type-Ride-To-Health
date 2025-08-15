@@ -7,6 +7,7 @@ import '../../../../core/widgets/app_logo.dart';
 import '../../../../core/widgets/app_scaffold.dart';
 import '../../../../core/utils/constants/app_colors.dart';
 import '../../../../core/widgets/wide_custom_button.dart';
+import '../../../identity/presentation/screens/verify_identity_screen.dart';
 import 'forgot_password_screen.dart';
 import 'user_signup_screen.dart';
 
@@ -127,7 +128,7 @@ class UserLoginScreenState extends State<UserLoginScreen> {
                         WideCustomButton(
                           text: 'Sign in',
                           onPressed: () {
-                            Get.to(() => AppMain());
+                            Get.to(() => VerifyIdentityScreen());
                           },
                         ),
                         const SizedBox(height: 8),
