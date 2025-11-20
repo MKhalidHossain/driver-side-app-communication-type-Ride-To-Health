@@ -389,6 +389,20 @@ class _TakePhotoScreenState extends State<TakePhotoScreen> {
             ),
           ],
         ),
+    return Container(
+      padding: const EdgeInsets.only(top: 40, left: 16, right: 16, bottom: 8),
+      color: Colors.black.withOpacity(0.7),
+      child: Row(
+        children: [
+          IconButton(
+            icon: const Icon(Icons.arrow_back, color: Colors.white),
+            onPressed: () => Navigator.pop(context),
+          ),
+          const Text(
+            'Scan ID Card',
+            style: TextStyle(color: Colors.white, fontSize: 18),
+          ),
+        ],
       ),
     );
   }

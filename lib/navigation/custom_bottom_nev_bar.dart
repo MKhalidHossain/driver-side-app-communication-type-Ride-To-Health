@@ -27,13 +27,15 @@ class CustomBottomNavBar extends StatelessWidget {
           ),
           _buildNavItem(
             context,
-            iconPathSelected: 'assets/icons/serviceRed.png',
-            iconPathUnselected: 'assets/icons/seviceLight.png',
-            label: 'Service',
+
+            iconPathSelected: 'assets/icons/earningRed.png',
+            iconPathUnselected: 'assets/icons/earningWhite.png',
+            label: 'Earning',
             index: 1,
           ),
           _buildNavItem(
             context,
+
             iconPathSelected: 'assets/icons/historyRed.png',
             iconPathUnselected: 'assets/icons/historyLight.png',
             label: 'History',

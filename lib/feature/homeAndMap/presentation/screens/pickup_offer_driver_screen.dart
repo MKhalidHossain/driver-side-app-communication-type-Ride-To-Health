@@ -3,19 +3,20 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
+import 'package:ridetohealthdriver/app.dart';
 import 'package:ridetohealthdriver/core/extensions/text_extensions.dart';
 import 'package:ridetohealthdriver/core/widgets/normal_custom_button.dart';
-import 'package:ridetohealthdriver/feature/map/presentation/screens/work/home_screen_driver.dart';
-import '../../../../../core/widgets/normal_custom_icon_button.dart';
-import '../../../controllers/app_controller.dart';
-import '../../../controllers/booking_controller.dart';
-import '../../../controllers/locaion_controller.dart';
-import 'confirm_location_map_screen.dart';
-import '../location_confirmation_screen.dart';
-import '../chat_screen.dart';
-import '../call_screen.dart';
-import '../payment_screen.dart';
-import 'finding_your_driver_screen.dart';
+import 'package:ridetohealthdriver/feature/homeAndMap/presentation/screens/home_screen_driver.dart';
+import '../../../../core/widgets/normal_custom_icon_button.dart';
+import '../../../map/controllers/app_controller.dart';
+import '../../../map/controllers/booking_controller.dart';
+import '../../../map/controllers/locaion_controller.dart';
+import '../../../map/presentation/screens/work/confirm_location_map_screen.dart';
+import '../../../map/presentation/screens/location_confirmation_screen.dart';
+import '../../../map/presentation/screens/chat_screen.dart';
+import '../../../map/presentation/screens/call_screen.dart';
+import '../../../map/presentation/screens/payment_screen.dart';
+import '../../../map/presentation/screens/work/finding_your_driver_screen.dart';
 
 class PickUpOfferDriverScreen extends StatefulWidget {
   const PickUpOfferDriverScreen({super.key});
@@ -129,49 +130,15 @@ class _PickUpOfferDriverScreenState extends State<PickUpOfferDriverScreen> {
                 decoration: BoxDecoration(
                   color: const Color(0xFF2E2E38), // Dark grey from the image
                   borderRadius: BorderRadius.all(Radius.circular(8)),
-                  border: Border(
-                    left: BorderSide(color: Color(0xff7B0100), width: 5),
-                  ),
+                  // border: Border(
+                  //   left: BorderSide(color: Color(0xff7B0100), width: 5),
+                  // ),
                 ),
-                child: Column(
-                  mainAxisSize: MainAxisSize.min,
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    // SizedBox(height: 20),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        Text(
-                          'Driver Status',
-                          style: TextStyle(
-                            color: Colors.white,
-                            fontSize: 16,
-                            fontWeight: FontWeight.w500,
-                          ),
-                        ),
-                        Switch(
-                          activeColor: Color(0xff7B0100).withOpacity(0.08),
-                          value: false,
-                          onChanged: (value) {},
-                        ),
-                      ],
-                    ),
-                    SizedBox(height: 10),
-                    Text(
-                      'New requests will appear here',
-                      style: TextStyle(color: Colors.grey, fontSize: 13),
-                    ),
-                    // Row(
-                    //   children: [
-                    //     SizedBox(width: 15),
-                    //     Expanded(
-                    //       child: Column(
-                    //         crossAxisAlignment: CrossAxisAlignment.start,
-                    //         children: [],
-                    //       ),
-                    //     ),
-                    //   ],
-                    // ),
-                    // SizedBox(height: 30),
+                    "Almost at pickup".text12Grey(),
+                    "Arriving in 1 min".text14White(),
                   ],
                 ),
               ),
@@ -347,150 +314,211 @@ class _PickUpOfferDriverScreenState extends State<PickUpOfferDriverScreen> {
                             ],
                           ),
                           SizedBox(height: 20),
-
-                          Container(
-                            margin: EdgeInsets.symmetric(horizontal: 0),
-                            padding: EdgeInsets.all(16),
-                            decoration: BoxDecoration(
-                              // color: const Color(
-                              //   0xFF3B3B42,
-                              // ), // Card background color
-                              borderRadius: BorderRadius.circular(10),
-                            ),
-                            child: Column(
-                              children: [
-                                // From: Current Location
-                                Row(
+                          Row(
+                            children: [
+                              Column(
+                                children: [
+                                  const Icon(
+                                    Icons.radio_button_checked,
+                                    color: Colors.red,
+                                  ),
+                                  Container(
+                                    width: 2,
+                                    height: 20,
+                                    color: Colors.grey,
+                                  ),
+                                  const Icon(
+                                    Icons.location_on,
+                                    color: Colors.green,
+                                  ),
+                                ],
+                              ),
+                              const SizedBox(width: 12),
+                              Expanded(
+                                child: Column(
                                   crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: [
-                                    Column(
-                                      children: [
-                                        Container(
-                                          width: 8,
-                                          height: 8,
-                                          decoration: BoxDecoration(
-                                            color: Colors.red,
-                                            shape: BoxShape.circle,
-                                          ),
-                                        ),
-                                        Container(
-                                          width: 2,
-                                          height:
-                                              25, // Height for the connecting line
-                                          color: Colors.red,
-                                        ),
-                                      ],
+                                  children: const [
+                                    Text(
+                                      "Pickup",
+                                      style: TextStyle(color: Colors.white),
                                     ),
-                                    SizedBox(width: 10),
-                                    Expanded(
-                                      child: Column(
-                                        crossAxisAlignment:
-                                            CrossAxisAlignment.start,
-                                        children: [
-                                          "Pickup:".text14White500(),
-
-                                          Obx(
-                                            () => Text(
-                                              locationController
-                                                      .pickupAddress
-                                                      .value
-                                                      .isEmpty
-                                                  ? '123 Main St, San Francisco, CA'
-                                                  : locationController
-                                                        .pickupAddress
-                                                        .value,
-                                              style: TextStyle(
-                                                color: Color(0xffB5B5B5),
-                                                fontSize: 12,
-                                                fontWeight: FontWeight.w400,
-                                              ),
-                                              maxLines: 1,
-                                              overflow: TextOverflow.ellipsis,
-                                            ),
-                                          ),
-                                        ],
+                                    Text(
+                                      "123 Main St, San Francisco, CA",
+                                      style: TextStyle(
+                                        fontSize: 12,
+                                        color: Colors.grey,
+                                      ),
+                                    ),
+                                    SizedBox(height: 8),
+                                    Text(
+                                      "Destination",
+                                      style: TextStyle(color: Colors.white),
+                                    ),
+                                    Text(
+                                      "456 Market St, San Francisco, CA",
+                                      style: TextStyle(
+                                        fontSize: 12,
+                                        color: Colors.grey,
                                       ),
                                     ),
                                   ],
                                 ),
-                                SizedBox(
-                                  height: 5,
-                                ), // Space between From and To
-                                // To: Destination Location (Changeable/Editable)
-                                GestureDetector(
-                                  onTap: () {
-                                    //  Get.to(() => DestinationSearchScreen());
-                                  },
-                                  child: Row(
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.start,
-                                    children: [
-                                      Column(
-                                        children: [
-                                          Container(
-                                            width: 8,
-                                            height: 8,
-                                            decoration: BoxDecoration(
-                                              color: Colors.red,
-                                              shape: BoxShape.circle,
-                                            ),
-                                          ),
-                                        ],
-                                      ),
-                                      SizedBox(width: 10),
-                                      Expanded(
-                                        child: Column(
-                                          crossAxisAlignment:
-                                              CrossAxisAlignment.start,
-                                          children: [
-                                            "Destination:".text14White500(),
-
-                                            Obx(
-                                              () => Text(
-                                                locationController
-                                                        .destinationAddress
-                                                        .value
-                                                        .isEmpty
-                                                    ? '456 Market St, San Francisco, CA' // Default text
-                                                    : locationController
-                                                          .destinationAddress
-                                                          .value,
-                                                style: TextStyle(
-                                                  color: Color(0xffB5B5B5),
-                                                  fontSize: 12,
-                                                  fontWeight: FontWeight.w400,
-                                                ),
-                                                maxLines: 1,
-                                                overflow: TextOverflow.ellipsis,
-                                              ),
-                                            ),
-                                          ],
-                                        ),
-                                      ),
-                                      Obx(() {
-                                        // Only show distance if destination is set and distance is calculated
-                                        if (locationController
-                                                    .destinationLocation
-                                                    .value !=
-                                                null &&
-                                            locationController.distance.value >
-                                                0) {
-                                          return Text(
-                                            '${locationController.distance.value.toStringAsFixed(1)}km',
-                                            style: TextStyle(
-                                              color: Colors.white,
-                                              fontSize: 15,
-                                            ),
-                                          );
-                                        }
-                                        return SizedBox.shrink(); // Hide if no destination or distance is zero
-                                      }),
-                                    ],
-                                  ),
+                              ),
+                              const SizedBox(width: 8),
+                              Text(
+                                "\$18.50",
+                                style: const TextStyle(
+                                  fontWeight: FontWeight.bold,
+                                  fontSize: 16,
+                                  color: Colors.white,
                                 ),
-                              ],
-                            ),
+                              ),
+                            ],
                           ),
+
+                          // Container(
+                          //   margin: EdgeInsets.symmetric(horizontal: 0),
+                          //   padding: EdgeInsets.all(16),
+                          //   decoration: BoxDecoration(
+                          //     // color: const Color(
+                          //     //   0xFF3B3B42,
+                          //     // ), // Card background color
+                          //     borderRadius: BorderRadius.circular(10),
+                          //   ),
+                          //   child: Column(
+                          //     children: [
+                          //       // From: Current Location
+                          //       Row(
+                          //         crossAxisAlignment: CrossAxisAlignment.start,
+                          //         children: [
+                          //           Column(
+                          //             children: [
+                          //               Container(
+                          //                 width: 8,
+                          //                 height: 8,
+                          //                 decoration: BoxDecoration(
+                          //                   color: Colors.red,
+                          //                   shape: BoxShape.circle,
+                          //                 ),
+                          //               ),
+                          //               Container(
+                          //                 width: 2,
+                          //                 height:
+                          //                     25, // Height for the connecting line
+                          //                 color: Colors.red,
+                          //               ),
+                          //             ],
+                          //           ),
+                          //           SizedBox(width: 10),
+                          //           Expanded(
+                          //             child: Column(
+                          //               crossAxisAlignment:
+                          //                   CrossAxisAlignment.start,
+                          //               children: [
+                          //                 "Pickup:".text14White500(),
+
+                          //                 Obx(
+                          //                   () => Text(
+                          //                     locationController
+                          //                             .pickupAddress
+                          //                             .value
+                          //                             .isEmpty
+                          //                         ? '123 Main St, San Francisco, CA'
+                          //                         : locationController
+                          //                               .pickupAddress
+                          //                               .value,
+                          //                     style: TextStyle(
+                          //                       color: Color(0xffB5B5B5),
+                          //                       fontSize: 12,
+                          //                       fontWeight: FontWeight.w400,
+                          //                     ),
+                          //                     maxLines: 1,
+                          //                     overflow: TextOverflow.ellipsis,
+                          //                   ),
+                          //                 ),
+                          //               ],
+                          //             ),
+                          //           ),
+                          //         ],
+                          //       ),
+                          //       SizedBox(
+                          //         height: 5,
+                          //       ), // Space between From and To
+                          //       // To: Destination Location (Changeable/Editable)
+                          //       GestureDetector(
+                          //         onTap: () {
+                          //           //  Get.to(() => DestinationSearchScreen());
+                          //         },
+                          //         child: Row(
+                          //           crossAxisAlignment:
+                          //               CrossAxisAlignment.start,
+                          //           children: [
+                          //             Column(
+                          //               children: [
+                          //                 Container(
+                          //                   width: 8,
+                          //                   height: 8,
+                          //                   decoration: BoxDecoration(
+                          //                     color: Colors.red,
+                          //                     shape: BoxShape.circle,
+                          //                   ),
+                          //                 ),
+                          //               ],
+                          //             ),
+                          //             SizedBox(width: 10),
+                          //             Expanded(
+                          //               child: Column(
+                          //                 crossAxisAlignment:
+                          //                     CrossAxisAlignment.start,
+                          //                 children: [
+                          //                   "Destination:".text14White500(),
+
+                          //                   Obx(
+                          //                     () => Text(
+                          //                       locationController
+                          //                               .destinationAddress
+                          //                               .value
+                          //                               .isEmpty
+                          //                           ? '456 Market St, San Francisco, CA' // Default text
+                          //                           : locationController
+                          //                                 .destinationAddress
+                          //                                 .value,
+                          //                       style: TextStyle(
+                          //                         color: Color(0xffB5B5B5),
+                          //                         fontSize: 12,
+                          //                         fontWeight: FontWeight.w400,
+                          //                       ),
+                          //                       maxLines: 1,
+                          //                       overflow: TextOverflow.ellipsis,
+                          //                     ),
+                          //                   ),
+                          //                 ],
+                          //               ),
+                          //             ),
+                          //             Obx(() {
+                          //               // Only show distance if destination is set and distance is calculated
+                          //               if (locationController
+                          //                           .destinationLocation
+                          //                           .value !=
+                          //                       null &&
+                          //                   locationController.distance.value >
+                          //                       0) {
+                          //                 return Text(
+                          //                   '${locationController.distance.value.toStringAsFixed(1)}km',
+                          //                   style: TextStyle(
+                          //                     color: Colors.white,
+                          //                     fontSize: 15,
+                          //                   ),
+                          //                 );
+                          //               }
+                          //               return SizedBox.shrink(); // Hide if no destination or distance is zero
+                          //             }),
+                          //           ],
+                          //         ),
+                          //       ),
+                          //     ],
+                          //   ),
+                          // ),
                           SizedBox(height: 20),
                           Divider(
                             height: 1,
@@ -572,7 +600,7 @@ class _PickUpOfferDriverScreenState extends State<PickUpOfferDriverScreen> {
                                   circularRadious: 30,
                                   text: "Cencel Ride",
                                   onPressed: () {
-                                    // Get.to();
+                                    Get.to(AppMain());
                                   },
                                 ),
                               ),

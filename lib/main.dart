@@ -6,6 +6,8 @@ import 'package:ridetohealthdriver/feature/auth/presentation/screens/user_login_
 import 'core/onboarding/presentation/screens/constantSpashScreen.dart';
 import 'core/onboarding/presentation/screens/onboarding1.dart';
 import 'feature/auth/controllers/auth_controller.dart';
+import 'feature/auth/presentation/screens/user_login_screen.dart';
+import 'feature/earning/presentation/screen/earning_screen.dart';
 import 'feature/map/bindings/initial_binding.dart';
 import 'helpers/dependency_injection.dart';
 // import 'package:ridetohealthdriver/feature/earning/presentation/screen/ride_history_screen.dart';
@@ -108,7 +110,6 @@ class MyApp extends StatelessWidget {
       initialBinding: InitialBinding(),
       debugShowCheckedModeBanner: false,
       home:
-
           // VerifyIdentityScreen(),
           //MapScreenTest(),
           // SearchDestinationScreen(),
@@ -127,3 +128,5 @@ class MyApp extends StatelessWidget {
     );
   }
 }
+
+// onbording hobe na driver app a

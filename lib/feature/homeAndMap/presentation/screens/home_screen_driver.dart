@@ -5,15 +5,15 @@ import 'package:get/get.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:ridetohealthdriver/core/extensions/text_extensions.dart';
 import 'package:ridetohealthdriver/core/widgets/normal_custom_button.dart';
-import '../../../controllers/app_controller.dart';
-import '../../../controllers/booking_controller.dart';
-import '../../../controllers/locaion_controller.dart';
-import 'confirm_location_map_screen.dart';
-import '../location_confirmation_screen.dart';
-import '../chat_screen.dart';
-import '../call_screen.dart';
-import '../payment_screen.dart';
-import 'finding_your_driver_screen.dart';
+import '../../../map/controllers/app_controller.dart';
+import '../../../map/controllers/booking_controller.dart';
+import '../../../map/controllers/locaion_controller.dart';
+import '../../../map/presentation/screens/work/confirm_location_map_screen.dart';
+import '../../../map/presentation/screens/location_confirmation_screen.dart';
+import '../../../map/presentation/screens/chat_screen.dart';
+import '../../../map/presentation/screens/call_screen.dart';
+import '../../../map/presentation/screens/payment_screen.dart';
+import '../../../map/presentation/screens/work/finding_your_driver_screen.dart';
 import 'pickup_offer_driver_screen.dart';
 
 class HomeScreenDriver extends StatefulWidget {
@@ -328,148 +328,209 @@ class _HomeScreenDriverState extends State<HomeScreenDriver> {
                           ),
                           SizedBox(height: 20),
 
-                          Container(
-                            margin: EdgeInsets.symmetric(horizontal: 0),
-                            padding: EdgeInsets.all(16),
-                            decoration: BoxDecoration(
-                              // color: const Color(
-                              //   0xFF3B3B42,
-                              // ), // Card background color
-                              borderRadius: BorderRadius.circular(10),
-                            ),
-                            child: Column(
-                              children: [
-                                // From: Current Location
-                                Row(
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: [
-                                    Column(
-                                      children: [
-                                        Container(
-                                          width: 8,
-                                          height: 8,
-                                          decoration: BoxDecoration(
-                                            color: Colors.red,
-                                            shape: BoxShape.circle,
-                                          ),
-                                        ),
-                                        Container(
-                                          width: 2,
-                                          height:
-                                              25, // Height for the connecting line
-                                          color: Colors.red,
-                                        ),
-                                      ],
-                                    ),
-                                    SizedBox(width: 10),
-                                    Expanded(
-                                      child: Column(
-                                        crossAxisAlignment:
-                                            CrossAxisAlignment.start,
-                                        children: [
-                                          "Pickup:".text14White500(),
+                          // Container(
+                          //   margin: EdgeInsets.symmetric(horizontal: 0),
+                          //   padding: EdgeInsets.all(16),
+                          //   decoration: BoxDecoration(
+                          //     // color: const Color(
+                          //     //   0xFF3B3B42,
+                          //     // ), // Card background color
+                          //     borderRadius: BorderRadius.circular(10),
+                          //   ),
+                          //   child: Column(
+                          //     children: [
+                          //       // From: Current Location
+                          //       Row(
+                          //         crossAxisAlignment: CrossAxisAlignment.start,
+                          //         children: [
+                          //           Column(
+                          //             children: [
+                          //               Container(
+                          //                 width: 8,
+                          //                 height: 8,
+                          //                 decoration: BoxDecoration(
+                          //                   color: Colors.red,
+                          //                   shape: BoxShape.circle,
+                          //                 ),
+                          //               ),
+                          //               Container(
+                          //                 width: 2,
+                          //                 height:
+                          //                     25, // Height for the connecting line
+                          //                 color: Colors.red,
+                          //               ),
+                          //             ],
+                          //           ),
+                          //           SizedBox(width: 10),
+                          //           Expanded(
+                          //             child: Column(
+                          //               crossAxisAlignment:
+                          //                   CrossAxisAlignment.start,
+                          //               children: [
+                          //                 "Pickup:".text14White500(),
 
-                                          Obx(
-                                            () => Text(
-                                              locationController
-                                                      .pickupAddress
-                                                      .value
-                                                      .isEmpty
-                                                  ? '123 Main St, San Francisco, CA'
-                                                  : locationController
-                                                        .pickupAddress
-                                                        .value,
-                                              style: TextStyle(
-                                                color: Color(0xffB5B5B5),
-                                                fontSize: 12,
-                                                fontWeight: FontWeight.w400,
-                                              ),
-                                              maxLines: 1,
-                                              overflow: TextOverflow.ellipsis,
-                                            ),
-                                          ),
-                                        ],
+                          //                 Obx(
+                          //                   () => Text(
+                          //                     locationController
+                          //                             .pickupAddress
+                          //                             .value
+                          //                             .isEmpty
+                          //                         ? '123 Main St, San Francisco, CA'
+                          //                         : locationController
+                          //                               .pickupAddress
+                          //                               .value,
+                          //                     style: TextStyle(
+                          //                       color: Color(0xffB5B5B5),
+                          //                       fontSize: 12,
+                          //                       fontWeight: FontWeight.w400,
+                          //                     ),
+                          //                     maxLines: 1,
+                          //                     overflow: TextOverflow.ellipsis,
+                          //                   ),
+                          //                 ),
+                          //               ],
+                          //             ),
+                          //           ),
+                          //         ],
+                          //       ),
+                          //       SizedBox(
+                          //         height: 5,
+                          //       ), // Space between From and To
+                          //       // To: Destination Location (Changeable/Editable)
+                          //       GestureDetector(
+                          //         onTap: () {
+                          //           //  Get.to(() => DestinationSearchScreen());
+                          //         },
+                          //         child: Row(
+                          //           crossAxisAlignment:
+                          //               CrossAxisAlignment.start,
+                          //           children: [
+                          //             Column(
+                          //               children: [
+                          //                 Container(
+                          //                   width: 8,
+                          //                   height: 8,
+                          //                   decoration: BoxDecoration(
+                          //                     color: Colors.red,
+                          //                     shape: BoxShape.circle,
+                          //                   ),
+                          //                 ),
+                          //               ],
+                          //             ),
+                          //             SizedBox(width: 10),
+                          //             Expanded(
+                          //               child: Column(
+                          //                 crossAxisAlignment:
+                          //                     CrossAxisAlignment.start,
+                          //                 children: [
+                          //                   "Destination:".text14White500(),
+
+                          //                   Obx(
+                          //                     () => Text(
+                          //                       locationController
+                          //                               .destinationAddress
+                          //                               .value
+                          //                               .isEmpty
+                          //                           ? '456 Market St, San Francisco, CA' // Default text
+                          //                           : locationController
+                          //                                 .destinationAddress
+                          //                                 .value,
+                          //                       style: TextStyle(
+                          //                         color: Color(0xffB5B5B5),
+                          //                         fontSize: 12,
+                          //                         fontWeight: FontWeight.w400,
+                          //                       ),
+                          //                       maxLines: 1,
+                          //                       overflow: TextOverflow.ellipsis,
+                          //                     ),
+                          //                   ),
+                          //                 ],
+                          //               ),
+                          //             ),
+                          //             Obx(() {
+                          //               // Only show distance if destination is set and distance is calculated
+                          //               if (locationController
+                          //                           .destinationLocation
+                          //                           .value !=
+                          //                       null &&
+                          //                   locationController.distance.value >
+                          //                       0) {
+                          //                 return Text(
+                          //                   '${locationController.distance.value.toStringAsFixed(1)}km',
+                          //                   style: TextStyle(
+                          //                     color: Colors.white,
+                          //                     fontSize: 15,
+                          //                   ),
+                          //                 );
+                          //               }
+                          //               return SizedBox.shrink(); // Hide if no destination or distance is zero
+                          //             }),
+                          //           ],
+                          //         ),
+                          //       ),
+                          //     ],
+                          //   ),
+                          // ),
+                          Row(
+                            children: [
+                              Column(
+                                children: [
+                                  const Icon(
+                                    Icons.radio_button_checked,
+                                    color: Colors.red,
+                                  ),
+                                  Container(
+                                    width: 2,
+                                    height: 20,
+                                    color: Colors.grey,
+                                  ),
+                                  const Icon(
+                                    Icons.location_on,
+                                    color: Colors.green,
+                                  ),
+                                ],
+                              ),
+                              const SizedBox(width: 12),
+                              Expanded(
+                                child: Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: const [
+                                    Text(
+                                      "Pickup",
+                                      style: TextStyle(color: Colors.white),
+                                    ),
+                                    Text(
+                                      "123 Main St, San Francisco, CA",
+                                      style: TextStyle(
+                                        fontSize: 12,
+                                        color: Colors.grey,
+                                      ),
+                                    ),
+                                    SizedBox(height: 8),
+                                    Text(
+                                      "Destination",
+                                      style: TextStyle(color: Colors.white),
+                                    ),
+                                    Text(
+                                      "456 Market St, San Francisco, CA",
+                                      style: TextStyle(
+                                        fontSize: 12,
+                                        color: Colors.grey,
                                       ),
                                     ),
                                   ],
                                 ),
-                                SizedBox(
-                                  height: 5,
-                                ), // Space between From and To
-                                // To: Destination Location (Changeable/Editable)
-                                GestureDetector(
-                                  onTap: () {
-                                    //  Get.to(() => DestinationSearchScreen());
-                                  },
-                                  child: Row(
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.start,
-                                    children: [
-                                      Column(
-                                        children: [
-                                          Container(
-                                            width: 8,
-                                            height: 8,
-                                            decoration: BoxDecoration(
-                                              color: Colors.red,
-                                              shape: BoxShape.circle,
-                                            ),
-                                          ),
-                                        ],
-                                      ),
-                                      SizedBox(width: 10),
-                                      Expanded(
-                                        child: Column(
-                                          crossAxisAlignment:
-                                              CrossAxisAlignment.start,
-                                          children: [
-                                            "Destination:".text14White500(),
-
-                                            Obx(
-                                              () => Text(
-                                                locationController
-                                                        .destinationAddress
-                                                        .value
-                                                        .isEmpty
-                                                    ? '456 Market St, San Francisco, CA' // Default text
-                                                    : locationController
-                                                          .destinationAddress
-                                                          .value,
-                                                style: TextStyle(
-                                                  color: Color(0xffB5B5B5),
-                                                  fontSize: 12,
-                                                  fontWeight: FontWeight.w400,
-                                                ),
-                                                maxLines: 1,
-                                                overflow: TextOverflow.ellipsis,
-                                              ),
-                                            ),
-                                          ],
-                                        ),
-                                      ),
-                                      Obx(() {
-                                        // Only show distance if destination is set and distance is calculated
-                                        if (locationController
-                                                    .destinationLocation
-                                                    .value !=
-                                                null &&
-                                            locationController.distance.value >
-                                                0) {
-                                          return Text(
-                                            '${locationController.distance.value.toStringAsFixed(1)}km',
-                                            style: TextStyle(
-                                              color: Colors.white,
-                                              fontSize: 15,
-                                            ),
-                                          );
-                                        }
-                                        return SizedBox.shrink(); // Hide if no destination or distance is zero
-                                      }),
-                                    ],
-                                  ),
+                              ),
+                              const SizedBox(width: 8),
+                              Text(
+                                '',
+                                style: const TextStyle(
+                                  fontWeight: FontWeight.bold,
+                                  fontSize: 16,
+                                  color: Colors.white,
                                 ),
-                              ],
-                            ),
+                              ),
+                            ],
                           ),
 
                           SizedBox(height: 20),
@@ -497,7 +558,7 @@ class _HomeScreenDriverState extends State<HomeScreenDriver> {
                                 '\$18.50',
                                 style: TextStyle(
                                   color: Colors.white,
-                                  fontSize: 16,
+                                  fontSize: 14,
                                   fontWeight: FontWeight.bold,
                                 ),
                               ),

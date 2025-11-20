@@ -8,6 +8,8 @@ import '../../../../core/utils/constants/app_colors.dart';
 import '../../../../core/widgets/wide_custom_button.dart';
 import '../../controllers/auth_controller.dart';
 import 'forget_password_screen.dart';
+import '../../../identity/presentation/screens/verify_identity_screen.dart';
+import 'forgot_password_screen.dart';
 import 'user_signup_screen.dart';
 
 class UserLoginScreen extends StatefulWidget {
@@ -203,6 +205,24 @@ class UserLoginScreenState extends State<UserLoginScreen> {
                               ),
                               Text(
                                 "Your data is secure and private",
+                        ),
+
+                        const SizedBox(height: 12),
+
+                        WideCustomButton(
+                          text: 'Sign in',
+                          onPressed: () {
+                            Get.to(() => VerifyIdentityScreen());
+                          },
+                        ),
+                        const SizedBox(height: 8),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            'New To our Platform?'.text12White(),
+                            TextButton(
+                              child: Text(
+                                "Sign Up Here",
                                 style: TextStyle(
                                   color: AppColors.context(context).textColor,
                                   fontSize: 12,

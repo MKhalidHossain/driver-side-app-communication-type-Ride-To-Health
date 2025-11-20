@@ -17,6 +17,7 @@ class DriverProfileInfoScreen extends StatelessWidget {
       appBar: AppBar(
         backgroundColor: Colors.transparent,
         elevation: 0,
+        leading: BackButton(color: Colors.white),
         title: const Text(
           'Personal Information',
           style: TextStyle(
@@ -33,7 +34,7 @@ class DriverProfileInfoScreen extends StatelessWidget {
           width: double.infinity,
           padding: const EdgeInsets.all(16),
           decoration: BoxDecoration(
-            color: Colors.grey.withOpacity(0.1),
+            color: Colors.white10.withOpacity(0.1),
             borderRadius: BorderRadius.circular(12),
           ),
           child: Column(

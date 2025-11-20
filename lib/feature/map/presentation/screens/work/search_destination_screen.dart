@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import '../../../controllers/app_controller.dart';
 import '../../../controllers/locaion_controller.dart';
-import 'home_screen_driver.dart';
+import '../../../../homeAndMap/presentation/screens/home_screen_driver.dart';
 
 class SearchDestinationScreen extends StatefulWidget {
   final ScrollController? scrollController;
